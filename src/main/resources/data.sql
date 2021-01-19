@@ -1,0 +1,11 @@
+INSERT INTO category (description) VALUES ('Polska');
+INSERT INTO category (description) VALUES ('Wloska');
+INSERT INTO category (description) VALUES ('Azjatycka');
+INSERT INTO category (description) VALUES ('Fast Food');
+INSERT INTO unit_of_measure (description) VALUES ('łyzeczka');
+INSERT INTO unit_of_measure (description) VALUES ('łyzka');
+INSERT INTO unit_of_measure (description) VALUES ('szklanka');
+INSERT INTO unit_of_measure (description) VALUES ('szczypta');
+INSERT INTO unit_of_measure (description) VALUES ('gram');
+INSERT INTO unit_of_measure (description) VALUES ('kilogram');
+INSERT INTO unit_of_measure (description) VALUES ('sztuka');
