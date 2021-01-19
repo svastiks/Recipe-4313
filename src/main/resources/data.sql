@@ -9,3 +9,5 @@ INSERT INTO unit_of_measure (description) VALUES ('szczypta');
 INSERT INTO unit_of_measure (description) VALUES ('gram');
 INSERT INTO unit_of_measure (description) VALUES ('kilogram');
 INSERT INTO unit_of_measure (description) VALUES ('sztuka');
+INSERT INTO unit_of_measure (description) VALUES ('ml');
+INSERT INTO unit_of_measure (description) VALUES ('litr');
