@@ -58,6 +58,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         zapiekankaRecipe.setServings(3);
         zapiekankaRecipe.setSource("Ostra na słodko");
         zapiekankaRecipe.setUrl("http://ostra-na-slodko.pl/2020/03/17/najlepsza-zapiekanka-ziemniaczana/");
+        zapiekankaRecipe.addNote(new Note("Lepiej dać więcej Cheddara i boczku, plus do sosu trochę oliwy"));
         zapiekankaRecipe.setDirections("Ziemniaki gotujemy na półtwardo, studzimy.\n" +
                 "\n" +
                 "Boczek i cebulę kroimy w kostkę, boczek podsmażamy ( tłuszczyk się wytopi ).\n" +
@@ -79,18 +80,17 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Zapiekamy ok. 35 minut w 180C.\n" +
                 "\n" +
                 "Smacznego!");
-        Set<Ingredient> zapiekankaIngridients = zapiekankaRecipe.getIngredients();
-        zapiekankaIngridients.add(new Ingredient("ziemniaki", 1d, kiloGram, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Surowy boczek", 400d, gram, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Ser żółty CHEDDAR", 200d, gram, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Smietana 30%", 0.25, szklanka, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Jajko", 2d, sztuka, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Masło", 0.25, sztuka, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Oliwa czosnkowa", 0.1, szklanka, zapiekankaRecipe));
-        zapiekankaIngridients.add(new Ingredient("Sól, pieprz, gałka muszkatułowa", 0.25, lyzeczka, zapiekankaRecipe));
+        
+        zapiekankaRecipe.addIngredient(new Ingredient("ziemniaki", 1d, kiloGram, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Surowy boczek", 400d, gram, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Ser żółty CHEDDAR", 200d, gram, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Smietana 30%", 0.25, szklanka, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Jajko", 2d, sztuka, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Masło", 0.25, sztuka, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Oliwa czosnkowa", 0.1, szklanka, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("Sól, pieprz, gałka muszkatułowa", 0.25, lyzeczka, zapiekankaRecipe));
 
-        zapiekankaRecipe.getCategories().add(polskaCategory);
-
+        zapiekankaRecipe.addCategory(polskaCategory);
         recipeRepository.save(zapiekankaRecipe);
 
         Recipe poledwiczkiRecipe = new Recipe();
@@ -101,6 +101,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         poledwiczkiRecipe.setServings(4);
         poledwiczkiRecipe.setSource("Kwestia smaku");
         poledwiczkiRecipe.setUrl("https://www.kwestiasmaku.com/przepis/poledwiczki-z-suszonymi-pomidorami");
+        poledwiczkiRecipe.addNote(new Note("Przez śmietanę 30% danie zawiera laktozę"));
         poledwiczkiRecipe.setDirections("Polędwicę opłukać i osuszyć, odciąć białą błonę na boku. \n" +
                 "Mięso pokroić ukośnie na 1 cm plasterki. Suszone pomidory pokroić na mniejsze kawałki, włożyć do małego garnka, wlać alkohol i zagotować.\n" +
                 "Po minucie gotowania odstawić z ognia.\n" +
@@ -112,21 +113,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Zdjąć pokrywę, dodać suszone pomidory wraz z płynem z gotowania i wymieszać. Dodać śmietankę, wymieszać potrząsając patelnią i gotować jeszcze przez ok. 5 minut. \n" +
                 "Na koniec posypać przez sitko mąką ziemniaczaną, wymieszać i zagotować. Odstawić z ognia i posypać posiekaną natką pietruszki.");
 
-        Set<Ingredient> poledwiczkiIngridients = poledwiczkiRecipe.getIngredients();
-        poledwiczkiIngridients.add(new Ingredient("Poledwica wieprzowa", 700d, gram, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Białe wytrawne wino", 0.5, szklanka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Suszone pomidory", 12d, sztuka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Woda", 1d, szklanka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Sos sojowy", 5d, lyzka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Pieprz cayene", 0.5, lyzeczka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Smietana 30%", 150d, ml, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Skrobia ziemniaczana", 1d, lyzeczka, poledwiczkiRecipe));
-        poledwiczkiIngridients.add(new Ingredient("Natka pietruszki", 1d, sztuka, poledwiczkiRecipe));
+        
+        poledwiczkiRecipe.addIngredient(new Ingredient("Poledwica wieprzowa", 700d, gram, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Białe wytrawne wino", 0.5, szklanka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Suszone pomidory", 12d, sztuka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Woda", 1d, szklanka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Sos sojowy", 5d, lyzka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Pieprz cayene", 0.5, lyzeczka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Smietana 30%", 150d, ml, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Skrobia ziemniaczana", 1d, lyzeczka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Natka pietruszki", 1d, sztuka, poledwiczkiRecipe));
 
-        poledwiczkiRecipe.getCategories().add(polskaCategory);
-        poledwiczkiRecipe.getCategories().add(wloskaCategory);
-
-
+        poledwiczkiRecipe.addCategory(polskaCategory);
+        poledwiczkiRecipe.addCategory(wloskaCategory);
         recipeRepository.save(poledwiczkiRecipe);
 
     }

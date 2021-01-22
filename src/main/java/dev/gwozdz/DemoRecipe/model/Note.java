@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 public class Note {
 
+    public Note(String recipeNotes) {
+        this.recipeNotes = recipeNotes;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
