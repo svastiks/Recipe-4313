@@ -134,10 +134,14 @@ public class Recipe {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+    public void addCategory(Category category){
+        if(categories.add(category)){
+            category.addRecipe(this);
+        }
+    }
     public Set<Category> getCategories() {
         return categories;
     }
-
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }

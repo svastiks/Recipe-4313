@@ -14,6 +14,10 @@ public class Category {
     @ManyToMany(mappedBy ="categories")
     private Set<Recipe> recipes;
 
+    public void addRecipe(Recipe recipe){
+        recipes.add(recipe);
+    }
+
     public Long getId() {
         return id;
     }
