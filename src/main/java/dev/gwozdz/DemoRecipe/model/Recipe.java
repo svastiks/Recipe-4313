@@ -3,6 +3,7 @@ package dev.gwozdz.DemoRecipe.model;
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -120,6 +121,11 @@ public class Recipe {
         this.notes = notes;
     }
 
+    public void addIngredient(Ingredient ingredient){
+        if(ingredients.add(ingredient)){
+            ingredient.setRecipe(this);
+        }
+    }
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
