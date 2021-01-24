@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Note {
 
+    public Note() {
+    }
+
     public Note(String recipeNotes) {
         this.recipeNotes = recipeNotes;
     }
