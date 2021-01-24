@@ -8,9 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -81,14 +79,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "Smacznego!");
         
-        zapiekankaRecipe.addIngredient(new Ingredient("ziemniaki", 1d, kiloGram, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Surowy boczek", 400d, gram, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Ser żółty CHEDDAR", 200d, gram, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Smietana 30%", 0.25, szklanka, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Jajko", 2d, sztuka, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Masło", 0.25, sztuka, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Oliwa czosnkowa", 0.1, szklanka, zapiekankaRecipe));
-        zapiekankaRecipe.addIngredient(new Ingredient("Sól, pieprz, gałka muszkatułowa", 0.25, lyzeczka, zapiekankaRecipe));
+        zapiekankaRecipe.addIngredient(new Ingredient("ziemniaki", 1d, kiloGram));
+        zapiekankaRecipe.addIngredient(new Ingredient("Surowy boczek", 400d, gram));
+        zapiekankaRecipe.addIngredient(new Ingredient("Ser żółty CHEDDAR", 200d, gram));
+        zapiekankaRecipe.addIngredient(new Ingredient("Smietana 30%", 0.25, szklanka));
+        zapiekankaRecipe.addIngredient(new Ingredient("Jajko", 2d, sztuka));
+        zapiekankaRecipe.addIngredient(new Ingredient("Masło", 0.25, sztuka));
+        zapiekankaRecipe.addIngredient(new Ingredient("Oliwa czosnkowa", 0.1, szklanka));
+        zapiekankaRecipe.addIngredient(new Ingredient("Sól, pieprz, gałka muszkatułowa", 0.25, lyzeczka));
 
         zapiekankaRecipe.addCategory(polskaCategory);
         recipeRepository.save(zapiekankaRecipe);
@@ -114,15 +112,15 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Na koniec posypać przez sitko mąką ziemniaczaną, wymieszać i zagotować. Odstawić z ognia i posypać posiekaną natką pietruszki.");
 
         
-        poledwiczkiRecipe.addIngredient(new Ingredient("Poledwica wieprzowa", 700d, gram, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Białe wytrawne wino", 0.5, szklanka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Suszone pomidory", 12d, sztuka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Woda", 1d, szklanka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Sos sojowy", 5d, lyzka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Pieprz cayene", 0.5, lyzeczka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Smietana 30%", 150d, ml, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Skrobia ziemniaczana", 1d, lyzeczka, poledwiczkiRecipe));
-        poledwiczkiRecipe.addIngredient(new Ingredient("Natka pietruszki", 1d, sztuka, poledwiczkiRecipe));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Poledwica wieprzowa", 700d, gram));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Białe wytrawne wino", 0.5, szklanka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Suszone pomidory", 12d, sztuka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Woda", 1d, szklanka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Sos sojowy", 5d, lyzka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Pieprz cayene", 0.5, lyzeczka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Smietana 30%", 150d, ml));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Skrobia ziemniaczana", 1d, lyzeczka));
+        poledwiczkiRecipe.addIngredient(new Ingredient("Natka pietruszki", 1d, sztuka));
 
         poledwiczkiRecipe.addCategory(polskaCategory);
         poledwiczkiRecipe.addCategory(wloskaCategory);

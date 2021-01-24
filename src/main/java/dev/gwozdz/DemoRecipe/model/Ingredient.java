@@ -5,11 +5,10 @@ import javax.persistence.*;
 @Entity
 public class Ingredient {
 
-    public Ingredient(String description, Double quantity, UnitOfMeasure uom, Recipe recipe) {
+    public Ingredient(String description, Double quantity, UnitOfMeasure uom) {
         this.description = description;
         this.quantity = quantity;
         this.uom = uom;
-        this.recipe = recipe;
     }
 
     @Id
