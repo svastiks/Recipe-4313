@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 @MockitoSettings(strictness = Strictness.STRICT_STUBS)
 class IndexControllerTest {
@@ -35,6 +36,15 @@ class IndexControllerTest {
         String returnMsg = indexController.getIndexPage(model);
         //then
         assertThat(returnMsg, equalTo("index"));
+    }
+
+    @Test
+    void getIndexShouldInvokeGetAllRecipesOnRecipeService(@Mock Model model){
+        //given
+        //when
+        indexController.getIndexPage(model);
+        //then
+        then(recipeService).should().getAllRecipes();
     }
 
 
