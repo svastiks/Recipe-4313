@@ -16,6 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -46,6 +47,17 @@ class IndexControllerTest {
         //then
         then(recipeService).should().getAllRecipes();
     }
+
+    @Test
+    void getIndexShouldInvokeAddAttributeOnModel(@Mock Model model){
+        //given
+        //when
+        indexController.getIndexPage(model);
+        //then
+        then(model).should().addAttribute(anyString(), any());
+    }
+
+
 
 
     private Set<Recipe> getTestRecipes(){
