@@ -8,12 +8,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyCollectionOf;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,6 +41,18 @@ class RecipeServiceImplTest {
         Set<Recipe> retrievedRecipes = recipeService.getAllRecipes();
         //then
         assertThat(retrievedRecipes, emptyCollectionOf(Recipe.class));
+    }
 
+    @Test
+    void getAllRecipesShouldReturnSetOfRecipes(){
+        //given
+        Set<Recipe> givenRecipes = new HashSet<>();
+        givenRecipes.add(new Recipe());
+        given(recipeRepository.findAll()).willReturn(givenRecipes);
+        //when
+        Set<Recipe> retrievedRecipes = recipeService.getAllRecipes();
+        //then
+        assertThat(retrievedRecipes, hasSize(1));
+        assertThat(retrievedRecipes, contains(any(Recipe.class)));
     }
 }
