@@ -49,7 +49,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Category wloskaCategory = categoryRepository.findByDescription("Wloska").get();
 
         Recipe zapiekankaRecipe = new Recipe();
-        zapiekankaRecipe.setDescription("NAJLEPSZA ZAPIEKANKA ZIEMNIACZANA");
+        zapiekankaRecipe.setDescription("Najlepsza zapiekanka ziemniaczana");
         zapiekankaRecipe.setCookTime(30);
         zapiekankaRecipe.setPrepTime(30);
         zapiekankaRecipe.setDifficulty(Difficulty.EASY);
@@ -92,7 +92,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         recipeRepository.save(zapiekankaRecipe);
 
         Recipe poledwiczkiRecipe = new Recipe();
-        poledwiczkiRecipe.setDescription("POLĘDWICZKI Z SUSZONYMI POMIDORAMI");
+        poledwiczkiRecipe.setDescription("Polędwiczki z suszonymi pomidorami");
         poledwiczkiRecipe.setCookTime(35);
         poledwiczkiRecipe.setPrepTime(20);
         poledwiczkiRecipe.setDifficulty(Difficulty.EASY);

@@ -3,42 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container-fluid" style="margin-top: 20px">
+<div class="container-fluid" style="margin-top: 22px">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h1>My Recipes</h1>
+        <div class="col-md-12"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-lg-8">
+            <div class="card bg-light text-secondary border-light mb-3">
+                <div class="card-header">
+                    <h4 class="text-left align-bottom">My Recipes</h4>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
                         <table class="table table-hover">
-                            <thread class="thread-inverse">
+                            <thread class="thead-inverse">
                                 <tr>
                                     <th>ID</th>
                                     <th>Description</th>
                                 </tr>
                             </thread>
-
-                            <tr th:each="recipe : ${recipes}">
+                            <tr class="text-secondary" th:each="recipe : ${recipes}">
                                 <td th:text="${recipe.id}">123</td>
                                 <td th:text="${recipe.description}">TASTY</td>
                             </tr>
-
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-sm-6"></div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 </body>
 </html>
