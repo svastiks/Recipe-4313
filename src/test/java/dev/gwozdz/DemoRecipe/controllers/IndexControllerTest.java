@@ -3,6 +3,8 @@ package dev.gwozdz.DemoRecipe.controllers;
 import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.services.RecipeService;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -16,8 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
@@ -28,6 +29,8 @@ class IndexControllerTest {
     private IndexController indexController;
     @Mock
     private RecipeService recipeService;
+    @Captor
+    private ArgumentCaptor <Set<Recipe>> argumentCaptor;
 
 
     @Test
@@ -40,7 +43,7 @@ class IndexControllerTest {
     }
 
     @Test
-    void getIndexShouldInvokeGetAllRecipesOnRecipeService(@Mock Model model){
+    void getIndexShouldGetAllRecipesOnRecipeService(@Mock Model model){
         //given
         //when
         indexController.getIndexPage(model);
@@ -49,12 +52,25 @@ class IndexControllerTest {
     }
 
     @Test
-    void getIndexShouldInvokeAddAttributeOnModel(@Mock Model model){
+    void getIndexShouldAddAttributeOnModel(@Mock Model model){
         //given
         //when
         indexController.getIndexPage(model);
         //then
         then(model).should().addAttribute(anyString(), any());
+    }
+
+    @Test
+    void getIndexShouldSendProperArgumentsToAddAttributeOnModel(@Mock Model model){
+        //given
+        Set<Recipe> givenRecipes = getTestRecipes();
+        given(recipeService.getAllRecipes()).willReturn(givenRecipes);
+        //when
+        indexController.getIndexPage(model);
+        //then
+        then(model).should().addAttribute(eq("recipes"), argumentCaptor.capture());
+        assertThat(argumentCaptor.getValue(), hasSize(5));
+        assertThat(argumentCaptor.getValue(), equalTo(givenRecipes));
     }
 
 
