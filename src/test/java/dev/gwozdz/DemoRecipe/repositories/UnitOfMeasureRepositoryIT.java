@@ -39,5 +39,13 @@ class UnitOfMeasureRepositoryIT {
         //then
         assertThat(uomOptional.isEmpty(), is(true));
     }
-    
+
+    @Test
+    void findByDescriptionShouldBeEmptyWhenLookingForNonExistingValue() {
+        //given
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("gramy");
+        //when
+        //then
+        assertThat(uomOptional.isEmpty(), is(true));
+    }
 }
