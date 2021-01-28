@@ -35,4 +35,13 @@ class CategoryRepositoryIT {
         //then
         assertThat(categoryOptional.isEmpty(), equalTo(true));
     }
+    @Test
+    void findByDescriptionShouldReturnEmptyWhenLookingForNotExistingValue() {
+        //given
+        //when
+        Optional<Category> categoryOptional = categoryRepository.findByDescription("Pols");
+        //then
+        assertThat(categoryOptional.isEmpty(), equalTo(true));
+    }
+
 }
