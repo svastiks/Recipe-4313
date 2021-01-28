@@ -25,26 +25,26 @@ class UnitOfMeasureRepositoryIT {
     @Test
     void findByDescriptionShouldFindValues() {
         //given
-        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("gram");
         //when
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("gram");
         //then
         assertThat(uomOptional.get().getDescription(), equalTo("gram"));
     }
 
     @Test
-    void findByDescriptionShouldBeEmptyWhenLookingForEmptyValue() {
+    void findByDescriptionShouldReturnEmptyWhenLookingForEmptyValue() {
         //given
-        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("");
         //when
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("");
         //then
         assertThat(uomOptional.isEmpty(), is(true));
     }
 
     @Test
-    void findByDescriptionShouldBeEmptyWhenLookingForNonExistingValue() {
+    void findByDescriptionShouldReturnEmptyWhenLookingForNonExistingValue() {
         //given
-        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("gramy");
         //when
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("gramy");
         //then
         assertThat(uomOptional.isEmpty(), is(true));
     }
