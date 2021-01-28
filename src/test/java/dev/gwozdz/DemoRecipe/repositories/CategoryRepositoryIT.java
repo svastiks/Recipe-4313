@@ -27,5 +27,12 @@ class CategoryRepositoryIT {
         assertThat(categoryOptional.isPresent(), equalTo(true));
         assertThat(categoryOptional.get().getDescription(), equalTo("Polska"));
     }
-    
+    @Test
+    void findByDescriptionShouldReturnEmptyWhenLookingForEmptyValue() {
+        //given
+        //when
+        Optional<Category> categoryOptional = categoryRepository.findByDescription("");
+        //then
+        assertThat(categoryOptional.isEmpty(), equalTo(true));
+    }
 }
