@@ -31,4 +31,13 @@ class UnitOfMeasureRepositoryIT {
         assertThat(uomOptional.get().getDescription(), equalTo("gram"));
     }
 
+    @Test
+    void findByDescriptionShouldBeEmptyWhenLookingForEmptyValue() {
+        //given
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("");
+        //when
+        //then
+        assertThat(uomOptional.isEmpty(), is(true));
+    }
+    
 }
