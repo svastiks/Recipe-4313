@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text=${recipe.description}"">Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-md-6">
+            <div class="card-group">
+                <div class="card bg-light rounded" style="padding-bottom: 22px">
+                    <div class="card-header">
+                        <h3 class="card-title" th:text="${recipe.description}">Recipe title</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Categories</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <ul>
+                                    <li>Cat1</li>
+                                    <li>Cat2</li>
+                                    <li>Cat3</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Prep time:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>15min</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Difficulty:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Easy</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Cook time:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>15min</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Servings:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>4</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Source:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Blog</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>URL</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p>www.example.org</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h3 class="card-title">Ingredients</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <ul>
+                                <li>One tablespoon of love</li>
+                                <li>2 glasses of wine</li>
+                                <li>One pinch of sugar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h3 class="card-title">Directions</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec luctus turpis. Aenean eu libero
+                        dui. Mauris sollicitudin tempor mattis. Fusce consequat lectus et nulla eleifend, a euismod ex
+                        tincidunt. Suspendisse tempor felis sit amet commodo consequat. Curabitur sed finibus eros, nec
+                        hendrerit sem. Sed lacinia sollicitudin erat, vel laoreet nibh mollis in. Proin molestie commodo
+                        neque eget auctor. Etiam condimentum pretium blandit. Suspendisse felis diam, vulputate et nibh
+                        et, mattis sagittis justo. Integer volutpat, diam id imperdiet ultricies, mi lorem feugiat
+                        metus, vitae euismod elit mi sed neque. Donec convallis sapien sit amet arcu maximus, sed
+                        placerat erat viverra.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h3 class="card-title">Notes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec luctus turpis. Aenean eu libero
+                        dui. Mauris sollicitudin tempor mattis. Fusce consequat lectus et nulla eleifend, a euismod ex
+                        tincidunt. Suspendisse tempor felis sit amet commodo consequat. Curabitur sed finibus eros, nec
+                        hendrerit sem. Sed lacinia sollicitudin erat, vel laoreet nibh mollis in. Proin molestie commodo
+                        neque eget auctor. Etiam condimentum pretium blandit. Suspendisse felis diam, vulputate et nibh
+                        et, mattis sagittis justo. Integer volutpat, diam id imperdiet ultricies, mi lorem feugiat
+                        metus, vitae euismod elit mi sed neque. Donec convallis sapien sit amet arcu maximus, sed
+                        placerat erat viverra.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>
