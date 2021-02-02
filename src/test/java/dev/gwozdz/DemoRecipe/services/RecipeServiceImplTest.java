@@ -10,7 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import javax.swing.text.html.Option;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,6 +29,27 @@ class RecipeServiceImplTest {
     private RecipeServiceImpl recipeService;
     @Mock
     private RecipeRepository recipeRepository;
+
+    @Test
+    void getRecipeByIdShouldReturnGivenRecipe(){
+        //given
+        Recipe givenRecipe = new Recipe();
+        givenRecipe.setId(1l);
+        Optional<Recipe> optionalGivenRecipe = Optional.of(givenRecipe);
+        given(recipeRepository.findById(1l)).willReturn(optionalGivenRecipe);
+        //when
+        Recipe receivedRecipe = recipeService.getRecipeById(1l);
+        //then
+        assertThat(receivedRecipe, equalTo(givenRecipe));
+    }
+
+    @Test
+    void getRecipeByIdShouldThrowWhenIdNotFound(){
+        //given
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, () -> recipeService.getRecipeById(2));
+    }
 
     @Test
     void getAllRecipesShouldInvokeFindAllFromRepository() {
