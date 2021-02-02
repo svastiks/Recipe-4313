@@ -22,10 +22,8 @@
                                 <h5>Categories</h5>
                             </div>
                             <div class="col-md-9">
-                                <ul>
-                                    <li>Cat1</li>
-                                    <li>Cat2</li>
-                                    <li>Cat3</li>
+                                <ul th:each="category : ${recipe.categories}">
+                                    <li th:text="${category.description}">Cat1</li>
                                 </ul>
                             </div>
                         </div>
@@ -34,13 +32,13 @@
                                 <h5>Prep time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>15min</p>
+                                <p th:text="${recipe.prepTime}">15min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>Easy</p>
+                                <p th:text="${recipe.difficulty}">XD</p>
                             </div>
                         </div>
                         <div class="row">
@@ -48,27 +46,28 @@
                                 <h5>Cook time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>15min</p>
+                                <p th:text="${recipe.cookTime}">15min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Servings:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>4</p>
+                                <p th:text="${recipe.servings}">4</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <h5>Source:</h5>
+                                <h5 >Source:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>Blog</p>
+                                <p th:text="${recipe.source}">Blog</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>www.example.org</p>
+                                <a href="#" th:href="${recipe.url}"
+                                    th:text="${recipe.url}">>www.example.org</a>
                             </div>
                         </div>
                     </div>
@@ -88,10 +87,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-9">
-                            <ul>
-                                <li>One tablespoon of love</li>
-                                <li>2 glasses of wine</li>
-                                <li>One pinch of sugar</li>
+                            <ul th:each="category : ${recipe.categories}">
+                                <li th:text="${category.description}">Cat1</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <ul th:each="ingredient : ${recipe.ingredients}">
+                                <li th:text="${ingredient}">One tablespoon of love</li>
                             </ul>
                         </div>
                     </div>
@@ -109,7 +111,7 @@
                     <h3 class="card-title">Directions</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-text">
+                    <div class="card-text" th:text="${recipe.directions}">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec luctus turpis. Aenean eu libero
                         dui. Mauris sollicitudin tempor mattis. Fusce consequat lectus et nulla eleifend, a euismod ex
                         tincidunt. Suspendisse tempor felis sit amet commodo consequat. Curabitur sed finibus eros, nec
@@ -133,7 +135,7 @@
                     <h3 class="card-title">Notes</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-text">
+                    <div class="card-text" th:text="${recipe.note.recipeNotes}">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec luctus turpis. Aenean eu libero
                         dui. Mauris sollicitudin tempor mattis. Fusce consequat lectus et nulla eleifend, a euismod ex
                         tincidunt. Suspendisse tempor felis sit amet commodo consequat. Curabitur sed finibus eros, nec

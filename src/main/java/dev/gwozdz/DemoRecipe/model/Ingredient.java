@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Ingredient {
 
+    public Ingredient() {
+    }
+
     public Ingredient(String description, Double quantity, UnitOfMeasure uom) {
         this.description = description;
         this.quantity = quantity;
@@ -56,4 +59,10 @@ public class Ingredient {
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
+
+    @Override
+    public String toString(){
+        return quantity + " x " + uom.getDescription() + " of " +description;
+    }
+
 }
