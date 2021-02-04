@@ -18,7 +18,6 @@ public class RecipeShowController {
     @RequestMapping("/recipe/show/{id}")
     public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.getRecipeById(Long.parseLong(id)));
-
         return "recipe/show";
     }
 }
