@@ -21,12 +21,13 @@ public class Ingredient {
     private String description;
     private Double quantity;
 
+
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
 
     @ManyToOne
     private Recipe recipe;
-    
+
 
     public Long getId() {
         return id;
@@ -63,6 +64,13 @@ public class Ingredient {
     @Override
     public String toString(){
         return quantity + " x " + uom.getDescription() + " of " +description;
+    }
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 
 }
