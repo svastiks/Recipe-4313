@@ -48,7 +48,7 @@ class RecipeServiceImplTest {
         //given
         //when
         //then
-        assertThrows(IllegalArgumentException.class, () -> recipeService.getRecipeById(2));
+        assertThrows(RuntimeException.class, () -> recipeService.getRecipeById(2));
     }
 
     @Test

@@ -29,7 +29,7 @@ public class RecipeServiceImpl implements RecipeService{
     public Recipe getRecipeById(long id) {
         Optional<Recipe> receivedRecipeOptional = recipeRepository.findById(id);
         if(receivedRecipeOptional.isEmpty()){
-            throw new IllegalArgumentException("Id not found.");
+            throw new RuntimeException("Id not found.");
         } else {
             return receivedRecipeOptional.get();
         }
