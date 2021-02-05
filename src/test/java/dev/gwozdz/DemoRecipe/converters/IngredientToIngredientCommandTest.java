@@ -5,6 +5,7 @@ import dev.gwozdz.DemoRecipe.commands.UnitOfMeasureCommand;
 import dev.gwozdz.DemoRecipe.model.Ingredient;
 import dev.gwozdz.DemoRecipe.model.UnitOfMeasure;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -22,13 +23,19 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class IngredientToIngredientCommandTest {
 
+    private IngredientToIngredientCommand converter;
+
     @Mock
     private static UnitOfMeasureToUnitOfMeasureCommand uomConverter;
+
+    @BeforeEach
+    void setUp(){
+        converter = new IngredientToIngredientCommand(uomConverter);
+    }
 
     @Test
     void convertShouldHandleNull() {
         //given
-        IngredientToIngredientCommand converter = new IngredientToIngredientCommand(uomConverter);
         //when
         IngredientCommand ingredientConverted = converter.convert(null);
         //then
@@ -39,7 +46,6 @@ class IngredientToIngredientCommandTest {
     void convertShouldHandleEmptyUom() {
         //given
         Ingredient ingredientGiven = new Ingredient();
-        IngredientToIngredientCommand converter = new IngredientToIngredientCommand(uomConverter);
         //when
         IngredientCommand ingredientConverted = converter.convert(ingredientGiven);
         //then
@@ -49,14 +55,7 @@ class IngredientToIngredientCommandTest {
     @Test
     void convertShouldReturnProperValues() {
         //given
-        Ingredient ingredientGiven = new Ingredient();
-        Long idGiven = Long.valueOf(1l);
-        ingredientGiven.setId(idGiven);
-        String descriptionGiven = "description";
-        ingredientGiven.setDescription(descriptionGiven);
-        Double quantityGiven = Double.valueOf(1d);
-        ingredientGiven.setQuantity(quantityGiven);
-        IngredientToIngredientCommand converter = new IngredientToIngredientCommand(uomConverter);
+        Ingredient ingredientGiven = prepareTestIngredient();
         UnitOfMeasure uomGiven = new UnitOfMeasure();
         ingredientGiven.setUom(uomGiven);
         UnitOfMeasureCommand uomCommandGiven = new UnitOfMeasureCommand();
@@ -64,11 +63,22 @@ class IngredientToIngredientCommandTest {
         //when
         IngredientCommand ingredientConverted = converter.convert(ingredientGiven);
         //then
-        assertThat(ingredientConverted.getId(), equalTo(idGiven));
-        assertThat(ingredientConverted.getDescription(), equalTo(descriptionGiven));
+        assertThat(ingredientConverted.getId(), equalTo(ingredientGiven.getId()));
+        assertThat(ingredientConverted.getDescription(), equalTo(ingredientGiven.getDescription()));
         assertThat(ingredientConverted.getUom(), equalTo(uomCommandGiven));
-        assertThat(ingredientConverted.getQuantity(), equalTo(quantityGiven));
+        assertThat(ingredientConverted.getQuantity(), equalTo(ingredientGiven.getQuantity()));
         verify(uomConverter, atMost(1)).convert(uomGiven);
+    }
+
+    private Ingredient prepareTestIngredient(){
+        Ingredient ingredientGiven = new Ingredient();
+        Long idGiven = Long.valueOf(1l);
+        String descriptionGiven = "description";
+        Double quantityGiven = Double.valueOf(1d);
+        ingredientGiven.setId(idGiven);
+        ingredientGiven.setDescription(descriptionGiven);
+        ingredientGiven.setQuantity(quantityGiven);
+        return ingredientGiven;
     }
 
 }

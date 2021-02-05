@@ -2,6 +2,7 @@ package dev.gwozdz.DemoRecipe.converters;
 
 import dev.gwozdz.DemoRecipe.commands.NoteCommand;
 import dev.gwozdz.DemoRecipe.model.Note;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,10 +11,16 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NoteToNoteCommandTest {
+    private NoteToNoteCommand converter;
+
+    @BeforeEach
+    void setUp() {
+        converter = new NoteToNoteCommand();
+    }
+
     @Test
     void convertShouldHandleNull(){
         //given
-        NoteToNoteCommand converter = new NoteToNoteCommand();
         //when
         NoteCommand noteConverted = converter.convert(null);
         //then
@@ -24,7 +31,6 @@ class NoteToNoteCommandTest {
     void convertShouldHandleEmptyUom(){
         //given
         Note noteGiven = new Note();
-        NoteToNoteCommand converter = new NoteToNoteCommand();
         //when
         NoteCommand noteConverted = converter.convert(noteGiven);
         //then
@@ -36,10 +42,9 @@ class NoteToNoteCommandTest {
         //given
         Note noteGiven = new Note();
         Long idGiven = Long.valueOf(1l);
-        noteGiven.setId(idGiven);
         String recipeNotesGiven = "recipeNotes";
+        noteGiven.setId(idGiven);
         noteGiven.setRecipeNotes(recipeNotesGiven);
-        NoteToNoteCommand converter = new NoteToNoteCommand();
         //when
         NoteCommand noteConverted = converter.convert(noteGiven);
         //then

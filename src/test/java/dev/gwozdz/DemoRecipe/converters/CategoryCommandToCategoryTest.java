@@ -2,6 +2,7 @@ package dev.gwozdz.DemoRecipe.converters;
 
 import dev.gwozdz.DemoRecipe.commands.CategoryCommand;
 import dev.gwozdz.DemoRecipe.model.Category;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,11 +11,16 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CategoryCommandToCategoryTest {
+    private CategoryCommandToCategory converter;
+
+    @BeforeEach
+    void setUp() {
+        converter = new CategoryCommandToCategory();
+    }
 
     @Test
-    void convertShouldHandleNull(){
+    void convertShouldHandleNull() {
         //given
-        CategoryCommandToCategory converter = new CategoryCommandToCategory();
         //when
         Category categoryConverted = converter.convert(null);
         //then
@@ -22,10 +28,9 @@ class CategoryCommandToCategoryTest {
     }
 
     @Test
-    void convertShouldHandleEmptyUom(){
+    void convertShouldHandleEmptyUom() {
         //given
         CategoryCommand categoryGiven = new CategoryCommand();
-        CategoryCommandToCategory converter = new CategoryCommandToCategory();
         //when
         Category categoryConverted = converter.convert(categoryGiven);
         //then
@@ -33,14 +38,13 @@ class CategoryCommandToCategoryTest {
     }
 
     @Test
-    void convertShouldReturnProperValues(){
+    void convertShouldReturnProperValues() {
         //given
-        CategoryCommand categoryGiven = new CategoryCommand();
         Long idGiven = Long.valueOf(1l);
-        categoryGiven.setId(idGiven);
         String descriptionGiven = "description";
+        CategoryCommand categoryGiven = new CategoryCommand();
+        categoryGiven.setId(idGiven);
         categoryGiven.setDescription(descriptionGiven);
-        CategoryCommandToCategory converter = new CategoryCommandToCategory();
         //when
         Category categoryConverted = converter.convert(categoryGiven);
         //then
