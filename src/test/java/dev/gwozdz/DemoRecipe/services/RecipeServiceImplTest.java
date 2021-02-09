@@ -1,5 +1,8 @@
 package dev.gwozdz.DemoRecipe.services;
 
+import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
+import dev.gwozdz.DemoRecipe.converters.RecipeCommandToRecipe;
+import dev.gwozdz.DemoRecipe.converters.RecipeToRecipeCommand;
 import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,8 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.only;
+import static org.mockito.Mockito.verify;
 
 @MockitoSettings(strictness = Strictness.STRICT_STUBS)
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +34,10 @@ class RecipeServiceImplTest {
     private RecipeServiceImpl recipeService;
     @Mock
     private RecipeRepository recipeRepository;
+    @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
+    @Mock
+    private RecipeToRecipeCommand recipeToRecipeCommand;
 
     @Test
     void getRecipeByIdShouldReturnGivenRecipe(){
@@ -80,5 +89,15 @@ class RecipeServiceImplTest {
         //then
         assertThat(retrievedRecipes, hasSize(1));
         assertThat(retrievedRecipes, contains(any(Recipe.class)));
+    }
+
+    @Test
+    void saveRecipeCommandShouldHandleNull(){
+        //given
+        RecipeCommand recipeCommand = new RecipeCommand();
+        //when
+        recipeService.saveRecipeCommand(recipeCommand);
+        //then
+        verify(recipeCommandToRecipe, only()).convert(recipeCommand);
     }
 }
