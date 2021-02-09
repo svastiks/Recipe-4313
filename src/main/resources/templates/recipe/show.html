@@ -7,12 +7,12 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-md-6">
             <div class="card-group">
-                <div class="card bg-light rounded" style="padding-bottom: 22px">
+                <div class="card shadow-lg p-3 bd-white rounded mt-3">
                     <div class="card-header">
                         <h3 class="card-title" th:text="${recipe.description}">Recipe title</h3>
                     </div>
@@ -32,7 +32,7 @@
                                 <h5 class="card-title">Prep time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${recipe.prepTime}">15min</p>
+                                <p th:text="${recipe.prepTime + 'min'}">15min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5 class="card-title">Difficulty:</h5>
@@ -46,7 +46,7 @@
                                 <h5 class="card-title">Cook time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${recipe.cookTime}">15min</p>
+                                <p th:text="${recipe.cookTime + 'min'}">15min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5 class="card-title">Servings:</h5>
@@ -67,20 +67,13 @@
                             </div>
                             <div class="col-md-3">
                                 <a href="#" th:href="${recipe.url}"
-                                    th:text="${recipe.url}">>www.example.org</a>
+                                    th:text="${recipe.url}">www.example.org</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-md-6">
-            <div class="card bg-light">
+            <div class="card shadow-lg p-3 bd-white rounded mt-3">
                 <div class="card-header">
                     <h3 class="card-title">Ingredients</h3>
                 </div>
@@ -94,14 +87,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-md-6">
-            <div class="card bg-light">
+            <div class="card shadow-lg p-3 bd-white rounded mt-3">
                 <div class="card-header">
                     <h3 class="card-title">Directions</h3>
                 </div>
@@ -118,14 +104,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid" style="margin-top: 22px margin-bottom: 22px">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-md-6">
-            <div class="card bg-light">
+            <div class="card shadow-lg p-3 bd-white rounded mt-3">
                 <div class="card-header">
                     <h3 class="card-title">Notes</h3>
                 </div>
@@ -145,6 +124,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
