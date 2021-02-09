@@ -1,21 +1,32 @@
 package dev.gwozdz.DemoRecipe.services;
 
+import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
+import dev.gwozdz.DemoRecipe.converters.RecipeCommandToRecipe;
+import dev.gwozdz.DemoRecipe.converters.RecipeToRecipeCommand;
 import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
-    private final RecipeRepository recipeRepository;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipeConverter;
+    private final RecipeToRecipeCommand recipeToRecipeCommandConverter;
+
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipeConverter, RecipeToRecipeCommand recipeToRecipeCommandConverter) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipeConverter = recipeCommandToRecipeConverter;
+        this.recipeToRecipeCommandConverter = recipeToRecipeCommandConverter;
     }
 
     @Override
@@ -33,5 +44,14 @@ public class RecipeServiceImpl implements RecipeService{
         } else {
             return receivedRecipeOptional.get();
         }
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+        Recipe convertedRecipe = recipeCommandToRecipeConverter.convert(recipeCommand);
+
+        Recipe savedRecipe = recipeRepository.save(convertedRecipe);
+        return recipeToRecipeCommandConverter.convert(savedRecipe);
     }
 }
