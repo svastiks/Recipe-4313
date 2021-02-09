@@ -7,11 +7,12 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
+<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <form th:object="${recipe}" th:action="@{/recipe/}">
+            <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="card-group">
                     <div class="card shadow-lg p-3 bg-white rounded mt-3">
@@ -99,7 +100,7 @@
                                 <h2 class="card-title">Ingredients</h2>
                             </div>
                             <div class="col-md-1">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
+                                <a class="btn btn-white" href="#" role="button">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -129,6 +130,16 @@
                                       th:field="*{note.recipeNotes}">Recipe notes</textarea>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1">
+
+                <button type="submit" class="btn btn-light mt-3 shadow-lg p-3">Submit</button>
+                    </div>
+
                     </div>
                 </div>
             </form>
