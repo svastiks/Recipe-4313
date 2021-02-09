@@ -9,30 +9,24 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @MockitoSettings(strictness = Strictness.STRICT_STUBS)
 @ExtendWith(MockitoExtension.class)
-class RecipeShowControllerTest {
+class RecipeControllerTest {
 
     @InjectMocks
-    private RecipeShowController recipeShowController;
+    private RecipeController recipeController;
 
     @Mock
     private RecipeService recipeService;
@@ -43,7 +37,7 @@ class RecipeShowControllerTest {
         String generatedTemplateName = "";
         given(recipeService.getRecipeById(anyLong())).willReturn(new Recipe());
         //when
-        generatedTemplateName = recipeShowController.showById("1", model);
+        generatedTemplateName = recipeController.showById("1", model);
         //then
         assertThat(generatedTemplateName, equalTo("recipe/show"));
     }
@@ -53,7 +47,7 @@ class RecipeShowControllerTest {
         //given
         Recipe recipe = new Recipe();
         recipe.setId(1l);
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeShowController).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
         given(recipeService.getRecipeById(anyLong())).willReturn(recipe);
         //when
         //then
