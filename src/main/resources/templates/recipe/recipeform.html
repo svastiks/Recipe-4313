@@ -5,6 +5,7 @@
     <title>Recipe Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
 </head>
 <body>
 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
@@ -46,15 +47,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Prep time:</label>
                                     <input type="text" class="form-control" th:field="*{prepTime}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Cook time:</label>
                                     <input type="text" class="form-control" th:field="*{cookTime}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Difficulty</label>
                                     <select class="form-control">
                                         <option>Easy</option>
@@ -64,15 +65,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Servings</label>
                                     <input type="text" class="form-control" th:field="*{servings}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>Source</label>
                                     <input type="text" class="form-control" th:field="*{source}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" th:field="*{url}"/>
                                 </div>

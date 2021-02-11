@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">Categories</h5>
                             </div>
                             <div class="col-md-9">
@@ -28,13 +28,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">Prep time:</h5>
                             </div>
                             <div class="col-md-3">
                                 <p th:text="${recipe.prepTime + 'min'}">15min</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
@@ -42,13 +42,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">Cook time:</h5>
                             </div>
                             <div class="col-md-3">
                                 <p th:text="${recipe.cookTime + 'min'}">15min</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">Servings:</h5>
                             </div>
                             <div class="col-md-3">
@@ -56,16 +56,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title" >Source:</h5>
                             </div>
                             <div class="col-md-3">
                                 <p th:text="${recipe.source}">Blog</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5 class="card-title">URL</h5>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <a href="#" th:href="${recipe.url}"
                                     th:text="${recipe.url}">www.example.org</a>
                             </div>
