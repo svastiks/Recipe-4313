@@ -21,6 +21,7 @@ import java.util.Set;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.only;
@@ -99,5 +100,16 @@ class RecipeServiceImplTest {
         recipeService.saveRecipeCommand(recipeCommand);
         //then
         verify(recipeCommandToRecipe, only()).convert(recipeCommand);
+    }
+
+    @Test
+    void deleteRecipeByIdShouldInvokeRepositoryMethod(){
+        //given
+        Long id = Long.valueOf(2l);
+        //when
+        recipeService.deleteRecipeById(id);
+        //then
+        verify(recipeRepository, only()).deleteById(anyLong());
+
     }
 }

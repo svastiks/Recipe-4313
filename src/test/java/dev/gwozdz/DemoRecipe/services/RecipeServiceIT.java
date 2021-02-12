@@ -12,8 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -59,5 +62,18 @@ public class RecipeServiceIT {
         assertThat(recipeCommandSaved.getId(), equalTo(recipeFetched.getId()));
         assertThat(recipeCommandSaved.getCategories().size(), equalTo(recipeFetched.getCategories().size()));
         assertThat(recipeCommandSaved.getIngredients().size(), equalTo(recipeFetched.getIngredients().size()));
+    }
+
+    @Test
+    void deleteRecipeByIdShouldRemoveProperRecipe(){
+        //given
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+        Recipe recipeFetched = allRecipes.iterator().next();
+        Long idToDelete = recipeFetched.getId();
+        //when
+        recipeService.deleteRecipeById(idToDelete);
+        Optional<Recipe> result = recipeRepository.findById(idToDelete);
+        //then
+        assertThat(result.isEmpty(), is(true));
     }
 }
