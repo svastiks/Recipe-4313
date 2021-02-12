@@ -18,7 +18,14 @@
                 <div class="card-group">
                     <div class="card shadow-lg p-3 bg-white rounded mt-3">
                         <div class="card-header">
-                            <h1 class="card-title">Edit recipe Information</h1>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h3 class="card-title">Edit recipe Information</h3>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-outline-secondary btn-lg " href="#" th:href="@{'/recipe/' + ${id} + '/delete'}" role="button">Delete</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -83,7 +90,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded mt-3">
                     <div class="card-header">
-                        <h2 class="card-title">Directions</h2>
+                        <h3 class="card-title">Directions</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -98,7 +105,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-11">
-                                <h2 class="card-title">Ingredients</h2>
+                                <h3 class="card-title">Ingredients</h3>
                             </div>
                             <div class="col-md-1">
                                 <a class="btn btn-white" href="#" role="button">Edit</a>
