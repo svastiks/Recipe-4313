@@ -111,8 +111,7 @@
                                 <ul>
                                     <li th:remove="all">1 szklanka mleka</li>
                                     <li th:remove="all">1 lyzeczka proszku do pieczenia</li>
-                                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getQuantity() +
-                                         ' ' + ingredient.uom.getDescription() + ' ' ingredient.getDescription()}">
+                                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}">
                                         1 szczypta soli
                                     </li>
                                 </ul>
