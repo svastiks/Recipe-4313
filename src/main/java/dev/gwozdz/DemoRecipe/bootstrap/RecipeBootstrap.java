@@ -58,25 +58,15 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         zapiekankaRecipe.setUrl("http://ostra-na-slodko.pl/2020/03/17/najlepsza-zapiekanka-ziemniaczana/");
         zapiekankaRecipe.addNote(new Note("Lepiej dać więcej Cheddara i boczku, plus do sosu trochę oliwy"));
         zapiekankaRecipe.setDirections("Ziemniaki gotujemy na półtwardo, studzimy.\n" +
-                "\n" +
                 "Boczek i cebulę kroimy w kostkę, boczek podsmażamy ( tłuszczyk się wytopi ).\n" +
-                "\n" +
                 "Dodajemy cebulkę, smażymy kilka minut dodając odrobinę masła.\n" +
-                "\n" +
                 "Uważaj, żeby cebula się nie przypaliła, bo będzie gorzka!\n" +
-                "\n" +
                 "Naczynie do zapiekania natłuszczamy masłem, układamy warstwę pokrojonych w plastry ziemniaków.\n" +
-                "\n" +
                 "Przykrywamy częścią farszu i warstwą tartego sera.\n" +
-                "\n" +
                 "Warstwy układamy do wykończenia składników.\n" +
-                "\n" +
                 "Jajko roztrzepujemy, dodajemy Śmietankę oraz przyprawy.\n" +
-                "\n" +
                 "Zalewamy ułożone w foremce składniki ( wierzch możemy dodatkowo posypać świeżymi ziołami, np. pietruszką ).\n" +
-                "\n" +
                 "Zapiekamy ok. 35 minut w 180C.\n" +
-                "\n" +
                 "Smacznego!");
         
         zapiekankaRecipe.addIngredient(new Ingredient("ziemniaki", 1d, kiloGram));
