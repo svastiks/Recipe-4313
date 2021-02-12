@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -99,10 +100,10 @@ class RecipeControllerTest {
     @Test
     void updateRecipeShouldAddProperRecipe() throws Exception{
         //given
-        Recipe recipeGiven = new Recipe();
+        RecipeCommand recipeGiven = new RecipeCommand();
         recipeGiven.setId(1l);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
-        given(recipeService.getRecipeById(1l)).willReturn(recipeGiven);
+        given(recipeService.getRecipeCommandById(1l)).willReturn(recipeGiven);
         //when
         mockMvc.perform(get("/recipe/1/update"))
                 .andExpect(status().isOk())
@@ -141,5 +142,16 @@ class RecipeControllerTest {
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/1/show"));
+    }
+
+    @Test
+    void deleteRecipeByIdShouldFetchProperId() throws Exception{
+        //given
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+        //when
+        //then
+        mockMvc.perform(get("/recipe/2/delete"))
+                .andExpect(status().is3xxRedirection());
+        verify(recipeService).deleteRecipeById(2);
     }
 }
