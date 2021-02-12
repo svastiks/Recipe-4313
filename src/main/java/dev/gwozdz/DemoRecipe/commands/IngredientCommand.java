@@ -13,4 +13,9 @@ public class IngredientCommand {
     private String description;
     private Double quantity;
     private UnitOfMeasureCommand uom;
+
+    @Override
+    public String toString() {
+        return this.quantity + " x " + this.uom.getDescription() + " of " + this.description ;
+    }
 }
