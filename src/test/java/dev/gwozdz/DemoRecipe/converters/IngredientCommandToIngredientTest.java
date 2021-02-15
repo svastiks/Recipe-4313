@@ -4,6 +4,7 @@ import dev.gwozdz.DemoRecipe.commands.IngredientCommand;
 import dev.gwozdz.DemoRecipe.commands.UnitOfMeasureCommand;
 import dev.gwozdz.DemoRecipe.model.Ingredient;
 import dev.gwozdz.DemoRecipe.model.UnitOfMeasure;
+import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,9 +30,12 @@ class IngredientCommandToIngredientTest {
     @Mock
     private static UnitOfMeasureCommandToUnitOfMeasure uomConverter;
 
+    @Mock
+    private RecipeRepository recipeRepository;
+
     @BeforeEach
     void setUp() {
-        converter = new IngredientCommandToIngredient(uomConverter);
+        converter = new IngredientCommandToIngredient(uomConverter, recipeRepository);
     }
 
     @Test
