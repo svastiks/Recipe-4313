@@ -1,5 +1,6 @@
 package dev.gwozdz.DemoRecipe.services;
 
+import dev.gwozdz.DemoRecipe.commands.IngredientCommand;
 import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
 import dev.gwozdz.DemoRecipe.model.Recipe;
 
@@ -16,4 +17,5 @@ public interface RecipeService {
     RecipeCommand getRecipeCommandById(long id);
 
     void deleteRecipeById(long id);
+
 }
