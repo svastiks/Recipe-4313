@@ -13,6 +13,7 @@ public class IngredientCommand {
     private String description;
     private Double quantity;
     private UnitOfMeasureCommand uom;
+    private Long recipeId;
 
     @Override
     public String toString() {
