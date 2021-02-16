@@ -86,4 +86,18 @@ class IngredientServiceIT {
         assertThat(newIngredientCommandWithRecipeId.getId(), nullValue());
         assertThat(newIngredientCommandWithRecipeId.getRecipeId(), equalTo(recipeId));
     }
+
+    @Test
+    @Transactional
+    void deleteIngredientByRecipeIdAndIngredientIdShouldDeleteProperObject(){
+        //given
+        Recipe fetchedRecipe = recipeRepository.findAll().iterator().next();
+        Long recipeId = fetchedRecipe.getId();
+        Ingredient ingredientToDelete = fetchedRecipe.getIngredients().iterator().next();
+        Long ingredientId = ingredientToDelete.getId();
+        //when
+        ingredientService.deleteIngredientByRecipeIdAndIngredientId(recipeId, ingredientId);
+        //then
+        assertThat(fetchedRecipe.getIngredients(), not(contains(ingredientToDelete)));
+    }
 }

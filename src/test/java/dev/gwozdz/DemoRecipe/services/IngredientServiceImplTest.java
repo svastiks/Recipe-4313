@@ -10,8 +10,10 @@ import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.model.UnitOfMeasure;
 import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
 import dev.gwozdz.DemoRecipe.repositories.UnitOfMeasureRepository;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,14 +23,13 @@ import org.mockito.quality.Strictness;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 
-@MockitoSettings(strictness = Strictness.STRICT_STUBS)
+
+@MockitoSettings(strictness = Strictness.LENIENT)
 @ExtendWith(MockitoExtension.class)
 public class IngredientServiceImplTest {
 
@@ -99,7 +100,7 @@ public class IngredientServiceImplTest {
         given(recipeRepository.findById(anyLong())).willReturn(optionalRecipe);
         IngredientCommand givenIngredientCommand = new IngredientCommand();
         givenIngredientCommand.setId(INGREDIENT_ID);
-        given(ingredientToIngredientCommand.convert(any(Ingredient.class))).willReturn(givenIngredientCommand);
+        given(ingredientToIngredientCommand.convert(ArgumentMatchers.any(Ingredient.class))).willReturn(givenIngredientCommand);
         //when
         IngredientCommand generatedIngredientCommand = ingredientService.getIngredientCommandByRecipeIdAndId(RECIPE_ID, INGREDIENT_ID);
         //then
@@ -116,7 +117,7 @@ public class IngredientServiceImplTest {
     }
 
     @Test
-    void saveIngredientCommandShouldThrowWhenUoMIsNull(){
+    void saveIngredientCommandShouldThrowWhenUomIsNull(){
         //given
         Optional<Recipe> optionalRecipe = Optional.of(generateTestRecipeWithOneIngredient());
         given(recipeRepository.findById(anyLong())).willReturn(optionalRecipe);
@@ -154,7 +155,7 @@ public class IngredientServiceImplTest {
 
             //mock repository to return saved recipe
         given(recipeRepository.save(givenRecipe)).willReturn(givenRecipe);
-        given(ingredientToIngredientCommand.convert(any(Ingredient.class))).willReturn(ingredientCommandToSave);
+        given(ingredientToIngredientCommand.convert(ArgumentMatchers.any(Ingredient.class))).willReturn(ingredientCommandToSave);
         //when
         IngredientCommand savedIngredientCommand = ingredientService.saveIngredientCommand(ingredientCommandToSave);
         //then
@@ -192,13 +193,45 @@ public class IngredientServiceImplTest {
         //mock repository to return saved recipe
         given(recipeRepository.save(givenRecipe)).willReturn(givenRecipe);
         //mock converter to return ingredientCommand
-        given(ingredientToIngredientCommand.convert(any(Ingredient.class))).willReturn(ingredientCommandToSave);
+        given(ingredientToIngredientCommand.convert(ArgumentMatchers.any(Ingredient.class))).willReturn(ingredientCommandToSave);
         //when
         IngredientCommand savedIngredientCommand = ingredientService.saveIngredientCommand(ingredientCommandToSave);
         //then
         assertThat(savedIngredientCommand.getId(), equalTo(NEW_INGREDIENT_ID));
         assertThat(savedIngredientCommand.getDescription(), equalTo(NEW_INGREDIENT_DESCRIPTION));
         assertThat(savedIngredientCommand.getRecipeId(), equalTo(RECIPE_ID));
+    }
+
+    @Test
+    void deleteIngredientByRecipeIdAndIngredientIdShouldThrowWhenWrongRecipeId(){
+        //given
+        Recipe existingRecipe = generateTestRecipeWithOneIngredient();
+        given(recipeRepository.findById(RECIPE_ID)).willReturn(Optional.of(existingRecipe));
+        //when
+        //then
+        assertThrows(RuntimeException.class, ()-> ingredientService.deleteIngredientByRecipeIdAndIngredientId(12l, 35l));
+    }
+
+    @Test
+    void deleteIngredientByRecipeIdAndIngredientIdShouldThrowWhenWrongIngredientId(){
+        //given
+        Recipe existingRecipe = generateTestRecipeWithOneIngredient();
+        given(recipeRepository.findById(RECIPE_ID)).willReturn(Optional.of(existingRecipe));
+        //when
+        //then
+        assertThrows(RuntimeException.class, ()-> ingredientService.deleteIngredientByRecipeIdAndIngredientId(RECIPE_ID, 35l));
+    }
+
+    @Test
+    void deleteIngredientByRecipeIdAndIngredientIdShouldDeleteExistingIngredient(){
+        //given
+        Recipe existingRecipe = generateTestRecipeWithOneIngredient();
+        given(recipeRepository.findById(RECIPE_ID)).willReturn(Optional.of(existingRecipe));
+        //when
+        ingredientService.deleteIngredientByRecipeIdAndIngredientId(RECIPE_ID, INGREDIENT_ID);
+        //then
+        assertThat(existingRecipe.getIngredients(), not(contains(Matchers.any(Ingredient.class))));
+
     }
 
     private Recipe generateTestRecipeWithOneIngredient(){
