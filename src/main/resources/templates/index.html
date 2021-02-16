@@ -24,12 +24,14 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Description</th>
+                                    <th></th>
                                 </tr>
                             </thread>
                             <tr class="text-secondary" th:each="recipe : ${recipes}">
-                                <td th:text="${recipe.id}">123</td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}"
+                                <td  th:text="${recipe.id}">123</td>
+                                <td class="col-md-6"><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}"
                                        th:text="${recipe.description}">TASTY + Description</a></td>
+                                <td class="col-md-2"><a class="btn btn-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}" role="button">Delete</a></td>
                             </tr>
                         </table>
                     </div>

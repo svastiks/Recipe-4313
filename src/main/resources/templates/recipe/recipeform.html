@@ -39,10 +39,9 @@
                                     <label>Categories</label>
                                 </div>
                                 <div class="col-md-9 form-group">
-                                    <div class="radio">
+                                    <div class="radio" th:each="category : ${allCategories}">
                                         <label>
-                                            <input type="checkbox" value=""/>
-                                            Cat1
+                                            <input type="checkbox" value="" th:text="${category.description}"/>
                                         </label>
                                     </div>
                                     <div class="radio" th:remove="all">
@@ -64,10 +63,10 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label>Difficulty</label>
-                                    <select class="form-control">
-                                        <option>Easy</option>
-                                        <option>Middle</option>
-                                        <option>Hard!</option>
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue : ${T(dev.gwozdz.DemoRecipe.model.Difficulty).values()}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}">Easy</option>
                                     </select>
                                 </div>
                             </div>
