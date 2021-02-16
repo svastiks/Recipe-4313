@@ -2,7 +2,6 @@ package dev.gwozdz.DemoRecipe.services;
 
 
 import dev.gwozdz.DemoRecipe.commands.IngredientCommand;
-import dev.gwozdz.DemoRecipe.commands.UnitOfMeasureCommand;
 import dev.gwozdz.DemoRecipe.converters.IngredientCommandToIngredient;
 import dev.gwozdz.DemoRecipe.converters.IngredientToIngredientCommand;
 import dev.gwozdz.DemoRecipe.model.Ingredient;
@@ -49,50 +48,60 @@ public class IngredientServiceImpl implements IngredientService{
 
     @Transactional
     @Override
-    public IngredientCommand saveIngredientCommand(IngredientCommand command) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
-        if(recipeOptional.isEmpty()){
+    public IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommandToSave) {
+        //check existance of recipe with recipeID given by ingredientCommandToSave
+        Optional<Recipe> recipeOptionalFromRepo = recipeRepository.findById(ingredientCommandToSave.getRecipeId());
+        //if not throw exception
+        if(recipeOptionalFromRepo.isEmpty()){
             throw new RuntimeException("Recipe not found");
         }else{
-            Recipe recipeFetched = recipeOptional.get();
-
-            Optional<Ingredient> ingredientOptional = recipeFetched
+            //get right recipe
+            Recipe recipeExisting = recipeOptionalFromRepo.get();
+            //check if ingredient with given ingredientId exists in recipe
+            Optional<Ingredient> optionalIngredientExistingInRecipe = recipeExisting
                     .getIngredients()
                     .stream()
-                    .filter(i -> i.getId().equals(command.getId()))
+                    .filter(i -> i.getId().equals(ingredientCommandToSave.getId()))
                     .findFirst();
-
-            if(ingredientOptional.isPresent()){
-                Ingredient ingredientFound = ingredientOptional.get();
-                ingredientFound.setDescription(command.getDescription());
-                ingredientFound.setQuantity(command.getQuantity());
-                ingredientFound.setUom(unitOfMeasureRepository
-                        .findById(command.getUom().getId())
+            //if ingredient already exists, copy values from ingredientCommandToSave
+            if(optionalIngredientExistingInRecipe.isPresent()){
+                Ingredient ingredientExisting = optionalIngredientExistingInRecipe.get();
+                ingredientExisting.setDescription(ingredientCommandToSave.getDescription());
+                ingredientExisting.setQuantity(ingredientCommandToSave.getQuantity());
+                ingredientExisting.setUom(unitOfMeasureRepository
+                        .findById(ingredientCommandToSave.getUom().getId())
                         .orElseThrow(() -> new RuntimeException("UOM not found")));
+                //if it is not found, convert ingredientCommandToSave to Ingredient
+                //and add it to existing recipe
             }else {
-                Ingredient ingredientToSave = ingredientCommandToIngredient.convert(command);
-                recipeFetched.addIngredient(ingredientToSave);
+                Ingredient notExistingIngredient = ingredientCommandToIngredient.convert(ingredientCommandToSave);
+                recipeExisting.addIngredient(notExistingIngredient);
             }
-
-            Recipe recipeSaved = recipeRepository.save(recipeFetched);
-
-            Optional<Ingredient> optionalIngredientCommandSaved = recipeSaved.getIngredients().stream()
-                    .filter(i -> i.getId().equals(command.getId()))
+            //save recipe in repo
+            Recipe recipeSaved = recipeRepository.save(recipeExisting);
+            //find ingredient by its ingredientID
+            Optional<Ingredient> optionalIngredientFromSavedRecipe = recipeSaved.getIngredients().stream()
+                    .filter(i -> i.getId().equals(ingredientCommandToSave.getId()))
                     .findFirst();
-            if(optionalIngredientCommandSaved.isPresent()){
-                return ingredientToIngredientCommand.convert(optionalIngredientCommandSaved.get());
-            }else{
-                optionalIngredientCommandSaved = recipeSaved
+            //if ingredientCommand was existing in recipe before it should be found by ingredientID
+            if(optionalIngredientFromSavedRecipe.isPresent()){
+                return ingredientToIngredientCommand.convert(optionalIngredientFromSavedRecipe.get());
+            }
+            else{
+                //if ingredientCommand was newly created, find by comparing all fields
+                optionalIngredientFromSavedRecipe = recipeSaved
                 .getIngredients().stream()
-                .filter(i -> i.getDescription().equals(command.getDescription()))
-                .filter(i -> i.getQuantity().equals(command.getQuantity()))
-                .filter(i-> i.getUom().getId().equals(command.getUom().getId()))
+                .filter(i -> i.getDescription().equals(ingredientCommandToSave.getDescription()))
+                .filter(i -> i.getQuantity().equals(ingredientCommandToSave.getQuantity()))
+                .filter(i-> i.getUom().getId().equals(ingredientCommandToSave.getUom().getId()))
                 .findFirst();
-                if(optionalIngredientCommandSaved.isEmpty()){
+                //if not found anyway throw exception
+                if(optionalIngredientFromSavedRecipe.isEmpty()){
                     throw new RuntimeException("Ingredient not found!");
                 }
+                //else return converted ingredientFromSavedRecipe
                 else{
-                    return ingredientToIngredientCommand.convert(optionalIngredientCommandSaved.get());
+                    return ingredientToIngredientCommand.convert(optionalIngredientFromSavedRecipe.get());
                 }
             }
         }
