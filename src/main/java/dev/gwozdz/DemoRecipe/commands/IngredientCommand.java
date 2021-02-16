@@ -17,7 +17,7 @@ public class IngredientCommand {
 
     @Override
     public String toString() {
-        if( uom == null){
+        if( uom == null || quantity == null){
             return this.description;
         }else {
             return this.quantity + " x " + this.uom.getDescription() + " of " + this.description ;

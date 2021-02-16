@@ -63,6 +63,9 @@ public class Ingredient {
 
     @Override
     public String toString(){
+        if(quantity==null || uom.getDescription()==null){
+            return description;
+        }
         return quantity + " x " + uom.getDescription() + " of " +description;
     }
     public UnitOfMeasure getUom() {
