@@ -1,6 +1,7 @@
 package dev.gwozdz.DemoRecipe.controllers;
 
 import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
+import dev.gwozdz.DemoRecipe.services.CategoryService;
 import dev.gwozdz.DemoRecipe.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RecipeController {
 
     private RecipeService recipeService;
+    private CategoryService categoryService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.categoryService = categoryService;
     }
 
     @RequestMapping("/recipe/{id}/show")
@@ -33,13 +36,13 @@ public class RecipeController {
     @RequestMapping("/recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.getRecipeCommandById(Long.parseLong(id)));
+        model.addAttribute("allCategories", categoryService.getAllCategories());
         return "recipe/recipeform";
     }
 
     @RequestMapping("/recipe/{id}/delete")
     public String deleteRecipe(@PathVariable String id, Model model){
         recipeService.deleteRecipeById(Long.parseLong(id));
-
         return "redirect:/";
     }
 
