@@ -66,13 +66,17 @@
                                 <tr>
                                     <th>Description</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thread>
                             <tr class="text-secondary" th:each="ingredient : ${recipe.ingredients}">
-                                <td><p th:text="${ingredient}">TASTY + Description</p></td>
-                                <td><a class="btn btn-light" href="#"
+                                <td class="col-md-6"><p th:text="${ingredient}">TASTY + Description</p></td>
+                                <td class="col-md-2"><a class="btn btn-light" href="#"
                                        th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/edit'}"
                                        role="button">Edit</a></td>
+                                <td class="col-md-2"><a class="btn btn-light" href="#"
+                                        th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete'}"
+                                        role="button">Delete</a></td>
                             </tr>
                         </table>
                     </div>
