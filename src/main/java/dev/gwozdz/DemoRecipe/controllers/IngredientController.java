@@ -27,14 +27,14 @@ public class IngredientController {
     public String showIngredients(@PathVariable String recipeId, Model model){
         model.addAttribute("recipe", recipeService.getRecipeCommandById(Long.valueOf(recipeId)));
         model.addAttribute("ingredientNew", ingredientService.getNewIngredientCommandWithRecipeId(Long.valueOf(recipeId)));
-        model.addAttribute("uoms", unitOfMeasureService.getAllUnitsOfMeasure());
+        model.addAttribute("uoms", unitOfMeasureService.getAllUnitsOfMeasureCommands());
         return "recipe/ingredient/list";
     }
 
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/edit")
     public String editIngredient(@PathVariable String recipeId, @PathVariable String ingredientId, Model model){
         model.addAttribute("ingredient", ingredientService.getIngredientCommandByRecipeIdAndId(Long.valueOf(recipeId), Long.valueOf(ingredientId)));
-        model.addAttribute("uoms", unitOfMeasureService.getAllUnitsOfMeasure());
+        model.addAttribute("uoms", unitOfMeasureService.getAllUnitsOfMeasureCommands());
         return "recipe/ingredient/edit";
     }
 
