@@ -27,7 +27,7 @@ public class UnitOfMeasureServiceImpl implements  UnitOfMeasureService{
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
-    public Set<UnitOfMeasureCommand> getAllUnitsOfMeasure () {
+    public Set<UnitOfMeasureCommand> getAllUnitsOfMeasureCommands() {
 
         return StreamSupport.stream(unitOfMeasureRepository.findAll().spliterator(),false)
                 .map(unitOfMeasureToUnitOfMeasureCommand::convert)

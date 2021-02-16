@@ -61,7 +61,7 @@ class IngredientControllerTest {
         ingredientCommand.setUom(new UnitOfMeasureCommand());
         given(recipeService.getRecipeCommandById(anyLong())).willReturn(recipeCommandGiven);
         given(ingredientService.getNewIngredientCommandWithRecipeId(anyLong())).willReturn(ingredientCommand);
-        given(unitOfMeasureService.getAllUnitsOfMeasure()).willReturn(new HashSet<>());
+        given(unitOfMeasureService.getAllUnitsOfMeasureCommands()).willReturn(new HashSet<>());
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
         //when
         mockMvc.perform(get("/recipe/1/ingredients"))
@@ -89,7 +89,7 @@ class IngredientControllerTest {
         IngredientCommand ingredientCommand = generateTestIngredientCommand();
         ingredientCommand.setUom(new UnitOfMeasureCommand());
         given(ingredientService.getIngredientCommandByRecipeIdAndId(anyLong(), anyLong())).willReturn(ingredientCommand);
-        given(unitOfMeasureService.getAllUnitsOfMeasure()).willReturn(new HashSet<>());
+        given(unitOfMeasureService.getAllUnitsOfMeasureCommands()).willReturn(new HashSet<>());
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
         //when
         mockMvc.perform(get("/recipe/3/ingredient/1/edit"))
