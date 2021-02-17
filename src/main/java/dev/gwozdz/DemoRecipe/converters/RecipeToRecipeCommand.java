@@ -40,6 +40,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
         recipeCommand.setServings(source.getServings());
         recipeCommand.setSource(source.getSource());
         recipeCommand.setUrl(source.getUrl());
+        recipeCommand.setImage(source.getImage());
         recipeCommand.setNote(noteConverter.convert(source.getNote()));
         Set<CategoryCommand> categoryCommands = source.getCategories().stream().map(categoryConverter::convert).collect(Collectors.toSet());
         recipeCommand.setCategories(categoryCommands);

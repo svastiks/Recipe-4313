@@ -1,14 +1,16 @@
 package dev.gwozdz.DemoRecipe.controllers;
 
 import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
+import dev.gwozdz.DemoRecipe.converters.ByteClassToBytePrimitive;
+import dev.gwozdz.DemoRecipe.converters.BytePrimitiveToByteClass;
 import dev.gwozdz.DemoRecipe.services.ImageService;
 import dev.gwozdz.DemoRecipe.services.RecipeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.only;
@@ -33,6 +36,10 @@ class ImageControllerTest {
     ImageService imageService;
     @Mock
     RecipeService recipeService;
+    @Mock
+    ByteClassToBytePrimitive byteClassToBytePrimitive;
+    @Mock
+    BytePrimitiveToByteClass bytePrimitiveToByteClass;
 
     @Test
     void getImageFormShouldReturnProperName(@Mock Model model) {
@@ -84,5 +91,31 @@ class ImageControllerTest {
 
         //then
         verify(imageService, only()).saveImageFile(1, multipartFile);
+    }
+
+    @Test
+    void getImageViewShouldReturnProperResponse() throws Exception {
+        //given
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
+        RecipeCommand givenRecipeCommand = new RecipeCommand();
+        givenRecipeCommand.setId(1l);
+        String s="fake image text";
+        Byte[] stringAsBytes = new Byte[s.getBytes().length];
+
+        int i=0;
+        for(byte byteFromString : s.getBytes()){
+            stringAsBytes[i++] = byteFromString;
+        }
+
+        givenRecipeCommand.setImage(stringAsBytes);
+        given(byteClassToBytePrimitive.convert(any(Byte[].class))).willReturn(s.getBytes());
+        given(recipeService.getRecipeCommandById(anyLong())).willReturn(givenRecipeCommand);
+        //when
+        MockHttpServletResponse httpServletResponse = mockMvc.perform(get("/recipe/1/imageview"))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+        byte[] responseBytes = httpServletResponse.getContentAsByteArray();
+        //then
+        assertEquals(stringAsBytes.length, responseBytes.length);
     }
 }
