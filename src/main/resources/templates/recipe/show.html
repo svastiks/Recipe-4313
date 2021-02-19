@@ -7,7 +7,6 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body th:style="'background: url(/backgrounds/1.jpg) no-repeat 100% 100%;'">
-
 </style>
 <header>
     <!-- Navbar -->
@@ -67,8 +66,8 @@
                                 </ul>
                             </div>
                             <div class="col-md-3">
-                                <img src="" th:src="@{'/recipe/' + ${recipe.id} + '/imageview'}"
-                                     width="200" height="200">
+                                <img th:src="@{'/images/'+${recipe.id}+'.jpg'}"
+                                     width="200" height="200"/>
                                 <a class="btn btn-light btn-sm" href="#"
                                       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">   Change Image</a>
                             </div>
