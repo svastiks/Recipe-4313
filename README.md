@@ -4,6 +4,9 @@ Save your favorite Recipes, and have them with you in easy way.
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [UML Diagram](#uml-diagram)
+* [Features](#features)
+* [Sources](#sources)
 
 ## General info
 This is a learning-purpose project. It's goal is to train and show gained skills is Spring, Maven, Hibernate, Docker, and many others.
