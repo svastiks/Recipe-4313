@@ -45,6 +45,7 @@ Project is created with:
 * Add images to your recipes to better recognise them!
 
 ### TO DO:
+* Exception handling, data validation.
 * Add Accounts, loging, creation.
 * Refactor categories: add, edit, remove.
 
