@@ -8,17 +8,15 @@ import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
 import dev.gwozdz.DemoRecipe.repositories.UnitOfMeasureRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(SpringExtension.class)
+
 @SpringBootTest
 class IngredientServiceIT {
 

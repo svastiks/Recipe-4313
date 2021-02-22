@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(SpringExtension.class)
+
 @SpringBootTest
 public class RecipeServiceIT {
 
@@ -34,6 +34,7 @@ public class RecipeServiceIT {
     RecipeCommandToRecipe recipeCommandToRecipe;
     @Autowired
     RecipeToRecipeCommand recipeToRecipeCommand;
+
 
     @Test
     void saveRecipeCommandShouldReturnProperValue(){

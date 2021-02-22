@@ -2,6 +2,7 @@ package dev.gwozdz.DemoRecipe.controllers;
 
 import dev.gwozdz.DemoRecipe.commands.RecipeCommand;
 import dev.gwozdz.DemoRecipe.model.Recipe;
+import dev.gwozdz.DemoRecipe.services.CategoryService;
 import dev.gwozdz.DemoRecipe.services.RecipeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,6 +38,9 @@ class RecipeControllerTest {
 
     @Mock
     private RecipeService recipeService;
+
+    @Mock
+    private CategoryService categoryService;
 
     @Test
     void showByIdShouldReturnProperName(@Mock Model model) {

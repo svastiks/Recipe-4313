@@ -1,5 +1,6 @@
 package dev.gwozdz.DemoRecipe.services;
 
+import dev.gwozdz.DemoRecipe.converters.BytePrimitiveToByteClass;
 import dev.gwozdz.DemoRecipe.model.Recipe;
 import dev.gwozdz.DemoRecipe.repositories.RecipeRepository;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,9 @@ class ImageServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    BytePrimitiveToByteClass bytePrimitiveToByteClass;
+
 
     @Test
     public void saveImageFile() throws Exception {
@@ -39,6 +44,7 @@ class ImageServiceImplTest {
         recipe.setId(id);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
         given(recipeRepository.findById(anyLong())).willReturn(recipeOptional);
+        given(bytePrimitiveToByteClass.convert(any())).willCallRealMethod();
         //when
         ArgumentCaptor<Recipe> argumentCaptor = ArgumentCaptor.forClass(Recipe.class);
         imageService.saveImageFile(id, multipartFile);
