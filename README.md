@@ -18,10 +18,11 @@ Service, enable to add new Recipes, edit them, delete, add images.
 Project is created with:
 * Java 14.0.1
 * Spring Boot 2.4.2
-* Maven 3.6.3
-* Hibernate Core 5.4.27.Final
 * Spring Data JPA 2.4.3
 * Spring Web MVC 5.3.3
+* Maven 3.6.3
+* Hibernate Core 5.4.27.Final
+* Docker
 * Project Lombok 1.18.16
 
 #### Tests:
@@ -31,7 +32,7 @@ Project is created with:
 
 #### Databases:
 * H2 database 1.4.200
-* MySQL
+* MySQL 5.7
 
 #### Frontend:
 * Thymeleaf-spring5:3.0.12.RELEASE
