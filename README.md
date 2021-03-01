@@ -3,15 +3,27 @@ Save your favorite Recipes, and have them with you in easy way.
 
 ## Table of contents
 * [General info](#general-info)
+* [Launch](#launch)
 * [Technologies](#technologies)
 * [UML Diagram](#uml-diagram)
 * [Features](#features)
 * [Sources](#sources)
 
+
 ## General info
 This is a learning-purpose project. It's goal is to train and show gained skills is Spring, Maven, Hibernate, Docker, and many others.
 Web-service is made in REST architecture, but because of Thymeleaf limitations (it uses HTML instead of HTTP) I was not able to use @DeleteMapping, @PutMapping, etc.
 Service, enable to add new Recipes, edit them, delete, add images. 
+
+## Launch
+To run this project install docker and keep following
+```
+$ cd ../demorecipe
+$ git clone https://github.com/bartoszgwozdz/Recipe.git
+$ docker build .
+$ docker run -p 80:8080 demorecipe
+```
+Visit localhost in your web browser
 	
 ## Technologies
 #### Backend:
