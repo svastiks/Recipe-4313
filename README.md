@@ -59,7 +59,7 @@ Project is created with:
 * Bootstrap 4.6.0
 
 ## UML Diagram
-
+![UML_Diagram](./images/jhipster-jdl.png)
 
 ## Features:
 * Add, edit, remove your favorite recipes!
