@@ -17,13 +17,20 @@ Service, enable to add new Recipes, edit them, delete, add images.
 
 ## Launch
 To run this project install docker and keep following
-```
+```docker
 $ cd ../demorecipe
 $ git clone https://github.com/bartoszgwozdz/Recipe.git
 $ docker build .
 $ docker run -p 80:8080 demorecipe
 ```
-Visit localhost in your web browser
+Visit localhost in your web browser.
+
+#### OR
+Pull existing image from dockerhub, and run it:
+```docker
+$ docker pull bartoszgwozdz/recipe
+$ docker run -p 80:8080 demorecipe
+```
 	
 ## Technologies
 #### Backend:
