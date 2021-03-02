@@ -1,5 +1,6 @@
 # Recipe REST Web-service
 Save your favorite Recipes, and have them with you in easy way.
+![LandingPage](./images/allRecipes.png)
 
 ## Table of contents
 * [General info](#general-info)
@@ -58,11 +59,12 @@ Project is created with:
 * Bootstrap 4.6.0
 
 ## UML Diagram
-![UML Diagram](./jhipster-jdl.png)
+
 
 ## Features:
 * Add, edit, remove your favorite recipes!
 * Add images to your recipes to better recognise them!
+![NewRecipe](./images/addNewRecipe.png)
 
 ### TO DO:
 * Exception handling, data validation.
