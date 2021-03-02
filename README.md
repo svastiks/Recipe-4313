@@ -23,7 +23,19 @@ $ git clone https://github.com/bartoszgwozdz/Recipe.git
 $ docker build .
 $ docker run -p 80:8080 demorecipe
 ```
-Visit localhost in your web browser
+Visit localhost in your web browser.\
+
+#### OR
+Pull existing image from dockerhub, and run it:
+```
+$ docker pull bartoszgwozdz/recipe
+$ docker run -p 80:8080 demorecipe
+```
+$ docker run -p 80:8080 recipe
+```
+
+#### OR
+Pull existing image from dockerhub and run it
 	
 ## Technologies
 #### Backend:
