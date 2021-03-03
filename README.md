@@ -39,7 +39,7 @@ $ docker run -p 80:8080 demorecipe
 ## Technologies
 #### Backend:
 Project is created with:
-###* Java 14.0.1
+* Java 14.0.1
 * Spring Boot 2.4.2
 * Spring Data JPA 2.4.3
 * Spring Web MVC 5.3.3
