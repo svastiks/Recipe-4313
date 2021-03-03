@@ -1,4 +1,4 @@
-# Recipe REST Web-service
+# ![icon](./images/iconSmall.png)Recipe REST Web-service
 Save your favorite Recipes, and have them with you in easy way.
 ![LandingPage](./images/allRecipes.png)
 
