@@ -1,4 +1,7 @@
 # ![icon](./images/icon32px.png) Recipe REST Web-service
+
+![dockerLink](https://img.shields.io/badge/Docker-Image-brightgreen)
+
 Save your favorite Recipes, and have them with you in easy way.
 ![LandingPage](./images/allRecipes.png)
 
@@ -36,7 +39,7 @@ $ docker run -p 80:8080 demorecipe
 ## Technologies
 #### Backend:
 Project is created with:
-* Java 14.0.1
+###* Java 14.0.1
 * Spring Boot 2.4.2
 * Spring Data JPA 2.4.3
 * Spring Web MVC 5.3.3
