@@ -51,4 +51,36 @@ class CategoryCommandToCategoryTest {
         assertThat(categoryConverted.getId(), equalTo(idGiven));
         assertThat(categoryConverted.getDescription(), equalTo(descriptionGiven));
     }
+    
+    @Test
+    void convertShouldHandleNullDescription() {
+        // given
+        CategoryCommand categoryGiven = new CategoryCommand();
+        categoryGiven.setId(2L);
+        categoryGiven.setDescription(null);
+
+        // when
+        Category categoryConverted = converter.convert(categoryGiven);
+
+        // then
+        assertThat(categoryConverted, notNullValue());
+        assertThat(categoryConverted.getId(), equalTo(2L));
+        assertNull(categoryConverted.getDescription());
+    }
+    
+    @Test
+    void convertShouldHandleEmptyDescription() {
+        // given
+        CategoryCommand categoryGiven = new CategoryCommand();
+        categoryGiven.setId(3L);
+        categoryGiven.setDescription("");
+
+        // when
+        Category categoryConverted = converter.convert(categoryGiven);
+
+        // then
+        assertThat(categoryConverted, notNullValue());
+        assertThat(categoryConverted.getId(), equalTo(3L));
+        assertThat(categoryConverted.getDescription(), equalTo(""));
+    }
 }

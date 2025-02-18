@@ -51,4 +51,52 @@ class NoteToNoteCommandTest {
         assertThat(noteConverted.getId(), equalTo(idGiven));
         assertThat(noteConverted.getRecipeNotes(), equalTo(recipeNotesGiven));
     }
+    
+    @Test
+    void convertShouldHandleNullRecipeNotes() {
+        // given
+        Note noteGiven = new Note();
+        noteGiven.setId(2L);
+        noteGiven.setRecipeNotes(null);
+
+        // when
+        NoteCommand noteConverted = converter.convert(noteGiven);
+
+        // then
+        assertThat(noteConverted, notNullValue());
+        assertThat(noteConverted.getId(), equalTo(2L));
+        assertNull(noteConverted.getRecipeNotes());
+    }
+    
+    @Test
+    void convertShouldHandleNullId() {
+        // given
+        Note noteGiven = new Note();
+        noteGiven.setId(null);
+        noteGiven.setRecipeNotes("Some recipe notes");
+
+        // when
+        NoteCommand noteConverted = converter.convert(noteGiven);
+
+        // then
+        assertThat(noteConverted, notNullValue());
+        assertNull(noteConverted.getId());
+        assertThat(noteConverted.getRecipeNotes(), equalTo("Some recipe notes"));
+    }
+    
+    @Test
+    void convertShouldHandleEmptyRecipeNotes() {
+        // given
+        Note noteGiven = new Note();
+        noteGiven.setId(4L);
+        noteGiven.setRecipeNotes("");
+
+        // when
+        NoteCommand noteConverted = converter.convert(noteGiven);
+
+        // then
+        assertThat(noteConverted, notNullValue());
+        assertThat(noteConverted.getId(), equalTo(4L));
+        assertThat(noteConverted.getRecipeNotes(), equalTo(""));
+    } 
 }
