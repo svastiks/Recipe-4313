@@ -18,4 +18,6 @@ public interface RecipeService {
 
     void deleteRecipeById(long id);
 
+	Set<Recipe> getRecipes();
+
 }

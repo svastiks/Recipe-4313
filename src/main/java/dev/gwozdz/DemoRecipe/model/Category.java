@@ -41,4 +41,12 @@ public class Category {
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+	public void setId(Object id2) {
+		this.id = (Long) id2;
+	}
+
+	public void setDescription(Object description2) {
+        this.description = (String) description2;
+	}
 }

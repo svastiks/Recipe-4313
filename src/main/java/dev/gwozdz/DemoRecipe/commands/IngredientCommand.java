@@ -23,4 +23,21 @@ public class IngredientCommand {
             return this.quantity + " x " + this.uom.getDescription() + " of " + this.description ;
         }
     }
+
+	public Object getId() {
+		return id;
+	}
+
+	public Object getRecipeId() {
+		return recipeId;
+	}
+
+	public Object getDescription() {
+		return description;
+	}
+
+	public void setDescription(String newDescription) {
+		this.description = newDescription;
+	}
+
 }
